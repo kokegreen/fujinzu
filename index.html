@@ -1,10 +1,50 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>My Site</title>
-  </head>
-  <body>
-    <h1>Hello, GitHub Pages!</h1>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <title>Leaflet Map Sample</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-sA+4WZTzF+fd2UYuFFBCrRZpugSgp90r0g3bi1yZj54="
+    crossorigin=""
+  />
+
+  <style>
+    body { margin: 0; }
+    #map { width: 100vw; height: 100vh; }
+  </style>
+</head>
+<body>
+
+  <div id="map"></div>
+
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-o9N1jvNw2KXk0ZxXzqHFOkz8sU6UosE9MYDWdPuPKoo="
+    crossorigin=""
+  ></script>
+
+  <script>
+    // 地図を表示（初期位置：東京）
+    const map = L.map('map').setView([35.681236, 139.767125], 13);
+
+    // OpenStreetMapのタイルを表示
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // サンプルマーカーを追加
+    L.marker([35.681236, 139.767125])
+      .addTo(map)
+      .bindPopup('ここは東京駅です')
+      .openPopup();
+  </script>
+
+</body>
 </html>
