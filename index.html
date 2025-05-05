@@ -22,7 +22,7 @@
 
   <script>
     // 地図を表示（初期位置：東京）
-    const map = L.map('map').setView([36.035420, 139.410082], 13);
+    const map = L.map('map').setView([36.035420, 139.410082], 11);
 
     // OpenStreetMapのタイルを表示
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -30,6 +30,7 @@
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
+    //県境表示
     fetch('https://raw.githubusercontent.com/dataofjapan/land/master/japan.geojson')
       .then(res => res.json())
       .then(data => {
