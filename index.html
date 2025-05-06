@@ -22,7 +22,7 @@
 
   <script>
     // 地図を表示（初期位置：東京）
-    const map = L.map('map').setView([36.035420, 139.410082], 9);
+    const map = L.map('map').setView([36.035420, 139.410082], 10);
 
     // OpenStreetMapのタイルを表示
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -34,7 +34,8 @@
     fetch('https://raw.githubusercontent.com/dataofjapan/land/master/japan.geojson')
       .then(res => res.json())
       .then(data => {
-        L.geoJSON(data, {
+        const saitama = data.features.find(f => f.properties.name === '埼玉県');
+        L.geoJSON(saitama, {
           style: {
             color: 'blue',
             weight: 1,
