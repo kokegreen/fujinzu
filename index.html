@@ -35,17 +35,11 @@
       .then(res => res.json())
       .then(data => {
         const saitama = data.features.find(f => f.properties.id === 11);
-        console.log(saitama);
         L.geoJSON(saitama, {
           style: {
             color: 'blue',
             weight: 1,
             fillOpacity: 0
-          },
-          onEachFeature: function (feature, layer) {
-            
-            //const name = feature.properties.name;
-            //layer.bindPopup(name);  // 県名ポップアップ表示
           }
         }).addTo(map);
     });
