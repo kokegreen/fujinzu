@@ -14,7 +14,7 @@
     #slider-container {
       position: absolute;
       top: 10px;
-      left: 10px;
+      left: 20px;
       background: white;
       padding: 5px;
       z-index: 1000;
@@ -49,18 +49,18 @@
     }).addTo(map);
 
     //県境表示
-    fetch('https://raw.githubusercontent.com/dataofjapan/land/master/japan.geojson')
-      .then(res => res.json())
-      .then(data => {
-        const saitama = data.features.find(f => f.properties.id === 11);
-        L.geoJSON(saitama, {
-          style: {
-            color: 'blue',
-            weight: 1,
-            fillOpacity: 0
-          }
-        }).addTo(map);
-    });
+    //fetch('https://raw.githubusercontent.com/dataofjapan/land/master/japan.geojson')
+    //  .then(res => res.json())
+    //  .then(data => {
+    //    const saitama = data.features.find(f => f.properties.id === 11);
+    //    L.geoJSON(saitama, {
+    //      style: {
+    //        color: 'blue',
+    //        weight: 1,
+    //        fillOpacity: 0
+    //      }
+    //    }).addTo(map);
+    //});
 
     // スライダー制御
     const slider = document.getElementById('yearSlider');
