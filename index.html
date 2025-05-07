@@ -30,6 +30,7 @@
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
 
   <script>
+    const markers = [];
     // 地図を表示（初期位置：埼玉の真ん中あたり）
     const map = L.map('map').setView([36.035420, 139.410082], 10);
 
@@ -56,10 +57,20 @@
     // スライダー制御
     const slider = document.getElementById('yearSlider');
     const yearValue = document.getElementById('yearValue');
-  
+
+    function updateMarkerColors(year) {
+      markers.forEach(marker => {
+        const isOld = marker.haijo < year;
+        marker.setStyle({
+          fillColor: isOld ? "gray" : "blue"
+        });
+      });
+    }
+    
     slider.addEventListener('input', () => {
-      yearValue.textContent = slider.value;
-      // ここにスライダーの値に応じてマーカーを切り替える処理を追加可能
+      const year = parseInt(slider.value, 10);
+      yearValue.textContent = year;
+      updateMarkerColors(year);
     });
     
     // CSV読み込みとマーカー表示
@@ -71,9 +82,11 @@
           const lat = parseFloat(row.緯度);
           const lng = parseFloat(row.経度);
           if (!isNaN(lat) && !isNaN(lng)) {
-            L.marker([lat, lng])
+            const marker = L.marker([lat, lng])
               .addTo(map)
               .bindPopup(`<strong>${row.城址名}</strong>`);
+            marker.haijo = parseInt(row.廃城年);
+            markers.push(marker);
           }
         });
       }
