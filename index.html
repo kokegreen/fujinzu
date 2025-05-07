@@ -106,7 +106,7 @@
               weight: 1,
               opacity: 1,
               fillOpacity: 0.8
-            }).bindPopup(`<strong>${row.城址名}</strong>`).addTo(map);
+            }).bindPopup(`<strong>${row.城址名}</strong>`).openPopup().addTo(map);
             marker.haijo = parseInt(row.廃城年, 10);
             markers.push(marker);
           }
