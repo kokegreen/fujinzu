@@ -91,7 +91,7 @@
               opacity: 1,
               fillOpacity: 0.8
             }).addTo(map);
-
+            marker.setZIndexOffset(1000);
             marker.bindPopup(`<strong>${row.城址名}</strong>`);
             //marker.on('click', () => {
             //  console.log(`クリック: ${row.城址名}`);
