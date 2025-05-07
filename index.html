@@ -90,10 +90,12 @@
               weight: 1,
               opacity: 1,
               fillOpacity: 0.8
-            }).bindPopup(`<strong>${row.城址名}</strong>`).addTo(map);
-            console.log(`確認: ${row.城址名}`);
+            }).addTo(map);
+
+            marker.bindPopup(`<strong>${row.城址名}</strong>`);
             marker.on('click', () => {
               console.log(`クリック: ${row.城址名}`);
+              marker.openPopup();  // ← これが重要
             });
             marker.chikujo = parseInt(row.築城年, 10);
             marker.haijo = parseInt(row.廃城年, 10);
