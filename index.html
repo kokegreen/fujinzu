@@ -15,6 +15,13 @@
 </head>
 <body>
 
+  <!--Slider-->
+  <div id="slider-container">
+    <label for="yearSlider">年:</label>
+    <input type="range" id="yearSlider" min="1400" max="1900" step="10" value="1600">
+    <span id="yearValue">1600</span>
+  </div>
+  
   <div id="map"></div>
 
   <!-- Leaflet JS -->
@@ -46,6 +53,15 @@
         }).addTo(map);
     });
 
+    // スライダー制御
+    const slider = document.getElementById('yearSlider');
+    const yearValue = document.getElementById('yearValue');
+  
+    slider.addEventListener('input', () => {
+      yearValue.textContent = slider.value;
+      // ここにスライダーの値に応じてマーカーを切り替える処理を追加可能
+    });
+    
     // CSV読み込みとマーカー表示
     Papa.parse('saitama_castles.csv', {
       download: true,
