@@ -23,7 +23,7 @@
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
 
   <script>
-    // 地図を表示（初期位置：東京）
+    // 地図を表示（初期位置：埼玉の真ん中あたり）
     const map = L.map('map').setView([36.035420, 139.410082], 10);
 
     // OpenStreetMapのタイルを表示
@@ -57,17 +57,12 @@
           if (!isNaN(lat) && !isNaN(lng)) {
             L.marker([lat, lng])
               .addTo(map)
-              .bindPopup(`<strong>${row.城址名}</strong><br>${row.市区町村名}`);
+              .bindPopup(`<strong>${row.城址名}</strong>`);
           }
         });
       }
     });
     
-    // サンプルマーカーを追加
-    L.marker([36.035420, 139.410082])
-      .addTo(map)
-      .bindPopup('埼玉の中心')
-      .openPopup();
   </script>
 
 </body>
