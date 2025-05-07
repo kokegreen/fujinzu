@@ -91,6 +91,7 @@
               opacity: 1,
               fillOpacity: 0.8
             }).bindPopup(`<strong>${row.城址名}</strong>`).addTo(map);
+            console.log(`確認: ${row.城址名}`);
             marker.on('click', () => {
               console.log(`クリック: ${row.城址名}`);
             });
@@ -99,11 +100,11 @@
             markers.push(marker);
           }
         });
+
+        //初期表示
+        updateMarkerColors(parseInt(slider.value, 10));
       }
     });
-
-    //初期表示
-    updateMarkerColors(parseInt(slider.value, 10));
     
   </script>
 
