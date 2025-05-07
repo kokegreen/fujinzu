@@ -71,7 +71,9 @@
         const isChikujo = marker.chikujo < year;
         const isHaijo = marker.haijo < year;
         marker.setStyle({
-          fillColor: isHaijo ? "gray" : isChikujo ? "blue" : "white"
+          fillColor: isHaijo ? "gray" : isChikujo ? "blue" : "white",
+          fillOpacity: isHaijo ? 0.5 : isChikujo ? 0.8 : 0.5,
+          opacity: isHaijo ? 0.5 : isChikujo ? 1 : 0.5
         });
       });
     }
