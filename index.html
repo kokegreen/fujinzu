@@ -19,6 +19,8 @@
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- PapaParse (CSVパーサー) -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
 
   <script>
     // 地図を表示（初期位置：東京）
@@ -42,6 +44,23 @@
             fillOpacity: 0
           }
         }).addTo(map);
+    });
+
+    // CSV読み込みとマーカー表示
+    Papa.parse('saitama_castles.csv', {
+      download: true,
+      header: true,
+      complete: function(results) {
+        results.data.forEach(row => {
+          const lat = parseFloat(row.緯度);
+          const lng = parseFloat(row.経度);
+          if (!isNaN(lat) && !isNaN(lng)) {
+            L.marker([lat, lng])
+              .addTo(map)
+              .bindPopup(`<strong>${row.城址名}</strong><br>${row.市区町村名}`);
+          }
+        });
+      }
     });
     
     // サンプルマーカーを追加
