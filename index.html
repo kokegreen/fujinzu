@@ -63,7 +63,7 @@
         const isChikujo = marker.chikujo < year;
         const isHaijo = marker.haijo < year;
         marker.setStyle({
-          fillColor: isOld ? "gray" : isChikujo ? "blue" : "white"
+          fillColor: isHaijo ? "gray" : isChikujo ? "blue" : "white"
         });
       });
     }
@@ -90,7 +90,10 @@
               weight: 1,
               opacity: 1,
               fillOpacity: 0.8
-            }).bindPopup(`<strong>${row.城址名}</strong>`).openPopup().addTo(map);
+            }).bindPopup(`<strong>${row.城址名}</strong>`).addTo(map);
+            marker.on('click', () => {
+              console.log(`クリック: ${row.城址名}`);
+            });
             marker.chikujo = parseInt(row.築城年, 10);
             marker.haijo = parseInt(row.廃城年, 10);
             markers.push(marker);
