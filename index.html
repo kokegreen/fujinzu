@@ -124,15 +124,16 @@
         });
       });
     }
-    function updateMarkerColorsKyoutoku(year) {
+    function updateMarkerColorsKyoutoku(date) {
       markers_kyoutoku.forEach(marker => {
-        const isThisYear = marker.hasseiYear == year;
-        const isFinished = marker.hasseiYear < year;
-        console.log(marker.hasseiYear);
+        date
+        const isThisDate = marker.hasseiDate == date;
+        const isFinished = marker.hasseiDate < date;
+        console.log(marker.hasseiDate);
         marker.setStyle({
-          fillColor: isFinished ? "red" : isThisYear ? "red" : "red",
-          fillOpacity: isFinished ? 0.5 : isThisYear ? 0.8 : 0.3,
-          opacity: isFinished ? 0.5 : isThisYear ? 1 : 0.3
+          fillColor: isFinished ? "red" : isThisDate ? "red" : "red",
+          fillOpacity: isFinished ? 0.5 : isThisDate ? 0.8 : 0.3,
+          opacity: isFinished ? 0.5 : isThisDate ? 1 : 0.3
         });
       });
     }
@@ -155,7 +156,7 @@
       const date = updateKyoutokuDisplay(parseInt(sliderKyoutoku.value, 10));
       //const year = parseInt(sliderKyoutoku.value, 10);
       //yearValueKyoutoku.textContent = year;
-      //updateMarkerColorsKyoutoku(year);
+      updateMarkerColorsKyoutoku(date);
     });
     
     // 城址CSV読み込みとマーカー表示
@@ -214,7 +215,8 @@
         });
 
         //初期表示
-        updateMarkerColorsKyoutoku(parseInt(sliderKyoutoku.value, 10));
+        const date = updateKyoutokuDisplay(parseInt(sliderKyoutoku.value, 10));
+        updateMarkerColorsKyoutoku(date);
       }
     });
     
