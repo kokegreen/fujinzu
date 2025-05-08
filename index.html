@@ -39,9 +39,9 @@
   </div>
   <!--享徳用スライダー-->
   <div id="slider-container-kyoutoku">
-    <label for="yearSlider">年:</label>
-    <input type="range" id="yearSliderKyoutoku" min="1450" max="1490" step="1" value="1450">
-    <span id="yearValueKyoutoku">1450</span>
+    <label for="yearMonthSlider">年月:</label>
+    <input type="range" id="yearSliderKyoutoku" min="0" max="1199" value="240">
+    <span id="yearValueKyoutoku">1620-01</span>
   </div>
   
   <div id="map"></div>
@@ -110,6 +110,8 @@
     const yearValue = document.getElementById('yearValue');
     const sliderKyoutoku = document.getElementById('yearSliderKyoutoku');
     const yearValueKyoutoku = document.getElementById('yearValueKyoutoku');
+    const minYear = 1400;
+    const maxMonthOffset = parseInt(sliderKyoutoku.max); // 1199 → 100年分
 
     function updateMarkerColors(year) {
       markers.forEach(marker => {
@@ -134,6 +136,14 @@
         });
       });
     }
+
+    function updateKyoutokuDisplay(monthOffset) {
+      const year = minYear + Math.floor(monthOffset / 12);
+      const month = (monthOffset % 12) + 1;
+      const formatted = `${year}-${month.toString().padStart(2, '0')}`;
+      yearValueKyoutoku.textContent = formatted;
+      return new Date(`${formatted}-01`);
+    }
     
     slider.addEventListener('input', () => {
       const year = parseInt(slider.value, 10);
@@ -142,9 +152,10 @@
     });
 
     sliderKyoutoku.addEventListener('input', () => {
-      const year = parseInt(sliderKyoutoku.value, 10);
-      yearValueKyoutoku.textContent = year;
-      updateMarkerColorsKyoutoku(year);
+      const date = updateKyoutokuDisplay(parseInt(sliderKyoutoku.value, 10));
+      //const year = parseInt(sliderKyoutoku.value, 10);
+      //yearValueKyoutoku.textContent = year;
+      //updateMarkerColorsKyoutoku(year);
     });
     
     // 城址CSV読み込みとマーカー表示
