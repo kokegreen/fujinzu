@@ -21,10 +21,12 @@
     }
     #slider-container-kyoutoku {
       position: absolute;
-      top: 10px;
-      right: 40px;
-      background: white;
-      padding: 5px;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.8);
+      padding: 8px 12px;
+      border-radius: 8px;
       z-index: 1000;
     }
   </style>
@@ -126,14 +128,13 @@
     }
     function updateMarkerColorsKyoutoku(date) {
       markers_kyoutoku.forEach(marker => {
-        date
-        const isThisDate = marker.hasseiDate == date;
+        const isThisMonth = ((date.getFullYear() == marker.hasseiDate.getFullYear()) && (date.getMonth() == marker.hasseiDate.getMonth()));
         const isFinished = marker.hasseiDate < date;
         console.log(marker.hasseiDate);
         marker.setStyle({
-          fillColor: isFinished ? "red" : isThisDate ? "red" : "red",
-          fillOpacity: isFinished ? 0.5 : isThisDate ? 0.8 : 0.3,
-          opacity: isFinished ? 0.5 : isThisDate ? 1 : 0.3
+          fillColor: isFinished ? "red" : isThisMonth ? "red" : "white",
+          fillOpacity: isFinished ? 0.5 : isThisMonth ? 0.8 : 0.3,
+          opacity: isFinished ? 0.5 : isThisMonth ? 1 : 0.3
         });
       });
     }
