@@ -23,7 +23,7 @@
       position: absolute;
       bottom: 20px; /* 下に配置 */
       left: 0;
-      width: 100%;
+      width: 80%;
       text-align: center;
       background-color: rgba(255, 255, 255, 0.8);
       padding: 10px;
@@ -42,7 +42,7 @@
   <!--享徳用スライダー-->
   <div id="slider-container-kyoutoku">
     <label for="yearMonthSlider">年月:</label>
-    <input type="range" id="yearSliderKyoutoku" min="0" max="1199" value="240">
+    <input type="range" id="yearSliderKyoutoku" min="0" max="1199" value="240" style="width: 60%;">
     <span id="yearValueKyoutoku">1620-01</span>
   </div>
   
@@ -132,8 +132,8 @@
         const isFinished = marker.hasseiDate < date;
         marker.setStyle({
           fillColor: isFinished ? "red" : isThisMonth ? "red" : "white",
-          fillOpacity: isFinished ? 0.3 : isThisMonth ? 0.8 : 0.3,
-          opacity: isFinished ? 0.3 : isThisMonth ? 1 : 0.3
+          fillOpacity: isFinished ? 0.2 : isThisMonth ? 0.8 : 0.6,
+          opacity: isFinished ? 0.2 : isThisMonth ? 1 : 0.6
         });
       });
     }
