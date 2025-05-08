@@ -124,8 +124,8 @@
     }
     function updateMarkerColorsKyoutoku(year) {
       markers_kyoutoku.forEach(marker => {
-        const isThisYear = marker.hasseiDate = year;
-        const isFinished = marker.hasseiDate < year;
+        const isThisYear = marker.hasseiYear = year;
+        const isFinished = marker.hasseiYear < year;
         marker.setStyle({
           fillColor: isFinished ? "red" : isThisYear ? "red" : "red",
           fillOpacity: isFinished ? 0.5 : isThisYear ? 0.8 : 0.3,
@@ -193,8 +193,10 @@
               fillOpacity: 0.8
             }).addTo(map);
             marker.bindPopup(`<strong>${row.発生日}</strong><br/>${row.内容}`);
-            marker.hasseiDate = new Date(row.発生日);
-            console.log(marker.hasseiDate);
+            const [y, m, d] = row.発生日.split('/').map(Number);
+            const date = new Date(y, m - 1, d);  // 月は0始まり
+            marker.hasseiDate = date;
+            marker.hasseiYear = date.getFullYear();
             markers_kyoutoku.push(marker);
           }
         });
