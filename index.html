@@ -44,6 +44,7 @@
     <label for="yearMonthSlider">年月:</label>
     <input type="range" id="yearSliderKyoutoku" min="0" max="1199" value="240" style="width: 60%;">
     <span id="yearValueKyoutoku">1620-01</span>
+    <button id="playButton">▶ 再生</button>
   </div>
   
   <div id="map"></div>
@@ -114,6 +115,8 @@
     const yearValueKyoutoku = document.getElementById('yearValueKyoutoku');
     const minYear = 1400;
     const maxMonthOffset = parseInt(sliderKyoutoku.max); // 1199 → 100年分
+    const playButton = document.getElementById("playButton");
+    let intervalId = null;
 
     function updateMarkerColors(year) {
       markers.forEach(marker => {
@@ -157,6 +160,26 @@
       //const year = parseInt(sliderKyoutoku.value, 10);
       //yearValueKyoutoku.textContent = year;
       updateMarkerColorsKyoutoku(date);
+    });
+
+    // 再生ボタン制御
+    playButton.addEventListener("click", () => {
+      if (intervalId === null) {
+        playButton.textContent = "■ 停止";
+        intervalId = setInterval(() => {
+          let index = parseInt(sliderKyoutoku.value);
+          if (index < parseInt(sliderKyoutoku.max)) {
+            sliderKyoutoku.value = index + 1;
+          } else {
+            sliderKyoutoku.value = sliderKyoutoku.min;
+          }
+          sliderKyoutoku.dispatchEvent(new Event("input"));
+        }, 500); // 0.5秒ごとに進む
+      } else {
+        clearInterval(intervalId);
+        intervalId = null;
+        playButton.textContent = "▶ 再生";
+      }
     });
     
     // 城址CSV読み込みとマーカー表示
