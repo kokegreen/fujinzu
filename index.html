@@ -160,7 +160,7 @@
               fillOpacity: 0.8
             }).addTo(map);
             marker.bindPopup(`<strong>${row.発生日}</strong><br/>${row.内容}`);
-            marker.hasseiDate = parseDate(row.発生日);
+            marker.hasseiDate = new Date(row.発生日);
             markers_kyoutoku.push(marker);
           }
         });
