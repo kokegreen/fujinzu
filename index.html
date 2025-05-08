@@ -27,6 +27,7 @@
       text-align: center;
       background-color: rgba(255, 255, 255, 0.8);
       padding: 10px;
+      z-index: 1000;
     }
   </style>
 </head>
@@ -129,7 +130,6 @@
       markers_kyoutoku.forEach(marker => {
         const isThisMonth = ((date.getFullYear() == marker.hasseiDate.getFullYear()) && (date.getMonth() == marker.hasseiDate.getMonth()));
         const isFinished = marker.hasseiDate < date;
-        console.log(marker.hasseiDate);
         marker.setStyle({
           fillColor: isFinished ? "red" : isThisMonth ? "red" : "white",
           fillOpacity: isFinished ? 0.3 : isThisMonth ? 0.8 : 0.3,
