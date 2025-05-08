@@ -22,7 +22,8 @@
     #slider-container-kyoutoku {
       position: absolute;
       bottom: 10px;
-      left: 50%;
+      left: 0;
+      width: 70%;
       transform: translateX(-50%);
       background: rgba(255, 255, 255, 0.8);
       padding: 8px 12px;
@@ -133,8 +134,8 @@
         console.log(marker.hasseiDate);
         marker.setStyle({
           fillColor: isFinished ? "red" : isThisMonth ? "red" : "white",
-          fillOpacity: isFinished ? 0.5 : isThisMonth ? 0.8 : 0.3,
-          opacity: isFinished ? 0.5 : isThisMonth ? 1 : 0.3
+          fillOpacity: isFinished ? 0.3 : isThisMonth ? 0.8 : 0.3,
+          opacity: isFinished ? 0.3 : isThisMonth ? 1 : 0.3
         });
       });
     }
