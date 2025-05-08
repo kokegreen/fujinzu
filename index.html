@@ -124,7 +124,7 @@
     }
     function updateMarkerColorsKyoutoku(year) {
       markers_kyoutoku.forEach(marker => {
-        const isThisYear = marker.hasseiYear = year;
+        const isThisYear = marker.hasseiYear == year;
         const isFinished = marker.hasseiYear < year;
         console.log(marker.hasseiYear);
         marker.setStyle({
