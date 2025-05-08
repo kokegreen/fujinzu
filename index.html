@@ -126,6 +126,7 @@
       markers_kyoutoku.forEach(marker => {
         const isThisYear = marker.hasseiYear = year;
         const isFinished = marker.hasseiYear < year;
+        console.log(marker.hasseiYear);
         marker.setStyle({
           fillColor: isFinished ? "red" : isThisYear ? "red" : "red",
           fillOpacity: isFinished ? 0.5 : isThisYear ? 0.8 : 0.3,
@@ -196,7 +197,7 @@
             const [y, m, d] = row.発生日.split('/').map(Number);
             const date = new Date(y, m - 1, d);  // 月は0始まり
             marker.hasseiDate = date;
-            marker.hasseiYear = date.getFullYear();
+            marker.hasseiYear = parseInt(date.getFullYear(), 10);
             markers_kyoutoku.push(marker);
           }
         });
