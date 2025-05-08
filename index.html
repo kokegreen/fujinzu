@@ -217,6 +217,7 @@
       header: true,
       complete: function(results) {
         results.data.forEach(row => {
+          if (row.種別 == "移動") continue;
           const lat = parseFloat(row.緯度);
           const lng = parseFloat(row.経度);
           if (!isNaN(lat) && !isNaN(lng)) {
@@ -233,6 +234,7 @@
             const date = new Date(y, m - 1, d);  // 月は0始まり
             marker.hasseiDate = date;
             marker.hasseiYear = parseInt(date.getFullYear(), 10);
+            marker.keisei = row.形勢;
             markers_kyoutoku.push(marker);
           }
         });
