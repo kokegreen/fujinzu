@@ -18,7 +18,15 @@
       background: white;
       padding: 5px;
       z-index: 1000;
-  }
+    }
+    #slider-container-kyoutoku {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      background: white;
+      padding: 5px;
+      z-index: 1000;
+    }
   </style>
 </head>
 <body>
@@ -28,6 +36,12 @@
     <label for="yearSlider">年:</label>
     <input type="range" id="yearSlider" min="1400" max="1900" step="10" value="1600">
     <span id="yearValue">1600</span>
+  </div>
+  <!--享徳用スライダー-->
+  <div id="slider-container-kyoutoku">
+    <label for="yearSlider">年:</label>
+    <input type="range" id="yearSliderKyoutoku" min="1450" max="1490" step="1" value="1450">
+    <span id="yearValueKyoutoku">1450</span>
   </div>
   
   <div id="map"></div>
@@ -94,6 +108,8 @@
     // スライダー制御
     const slider = document.getElementById('yearSlider');
     const yearValue = document.getElementById('yearValue');
+    const sliderKyoutoku = document.getElementById('yearSliderKyoutoku');
+    const yearValueKyoutoku = document.getElementById('yearValueKyoutoku');
 
     function updateMarkerColors(year) {
       markers.forEach(marker => {
@@ -106,11 +122,28 @@
         });
       });
     }
+    function updateMarkerColorsKyoutoku(year) {
+      markers.forEach(marker => {
+        const isThisYear = marker.hasseiDate = year;
+        const isFinished = marker.hasseiDate < year;
+        marker.setStyle({
+          fillColor: isFinished ? "red" : isThisYear ? "red" : "red",
+          fillOpacity: isFinished ? 0.5 : isThisYear ? 0.8 : 0.3,
+          opacity: isFinished ? 0.5 : isThisYear ? 1 : 0.3
+        });
+      });
+    }
     
     slider.addEventListener('input', () => {
       const year = parseInt(slider.value, 10);
       yearValue.textContent = year;
       updateMarkerColors(year);
+    });
+
+    sliderKyoutoku.addEventListener('input', () => {
+      const year = parseInt(sliderKyoutoku.value, 10);
+      yearValueKyoutoku.textContent = year;
+      updateMarkerColorsKyoutoku(year);
     });
     
     // 城址CSV読み込みとマーカー表示
@@ -166,7 +199,7 @@
         });
 
         //初期表示
-        //updateMarkerColors(parseInt(slider.value, 10));
+        updateMarkerColorsKyoutoku(parseInt(sliderKyoutoku.value, 10));
       }
     });
     
