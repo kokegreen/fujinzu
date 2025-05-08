@@ -22,7 +22,7 @@
     #slider-container-kyoutoku {
       position: absolute;
       top: 10px;
-      right: 30px;
+      right: 40px;
       background: white;
       padding: 5px;
       z-index: 1000;
@@ -194,6 +194,7 @@
             }).addTo(map);
             marker.bindPopup(`<strong>${row.発生日}</strong><br/>${row.内容}`);
             marker.hasseiDate = new Date(row.発生日);
+            console.log(marker.hasseiDate);
             markers_kyoutoku.push(marker);
           }
         });
