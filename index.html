@@ -217,7 +217,7 @@
       header: true,
       complete: function(results) {
         results.data.forEach(row => {
-          if (row.種別.trim() === "移動") return;
+          if (row.種別 == "移動") return;
           const lat = parseFloat(row.緯度);
           const lng = parseFloat(row.経度);
           if (!isNaN(lat) && !isNaN(lng)) {
