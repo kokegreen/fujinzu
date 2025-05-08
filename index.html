@@ -22,7 +22,7 @@
     #slider-container-kyoutoku {
       position: absolute;
       top: 10px;
-      right: 20px;
+      right: 30px;
       background: white;
       padding: 5px;
       z-index: 1000;
@@ -123,7 +123,7 @@
       });
     }
     function updateMarkerColorsKyoutoku(year) {
-      markers.forEach(marker => {
+      markers_kyoutoku.forEach(marker => {
         const isThisYear = marker.hasseiDate = year;
         const isFinished = marker.hasseiDate < year;
         marker.setStyle({
