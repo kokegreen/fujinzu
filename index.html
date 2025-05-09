@@ -148,20 +148,22 @@
             opacity: isThisMonth ? 1 : 0.2
           });
           map.addLayer(line);
+          const newDecorator = L.polylineDecorator(line, {
+            patterns: [{
+              offset: '100%',
+              repeat: 0,
+              symbol: L.Symbol.arrowHead({
+                pixelSize: 10,
+                polygon: true,
+                pathOptions: {
+                  color: 'red',
+                  opacity: 0.2
+                }
+              })
+            }]
+          }).addTo(map);
         } else {
           map.removeLayer(line);
-        }
-      });
-      decorators.forEach(({ decorator, date }) => {
-        if (date <= sDate) {
-          const isThisMonth = checkIsThisMonth(sDate, date);
-          decorator.setStyle({
-            opacity: isThisMonth ? 1 : 0.2,
-            pathOptions: { color: 'red', fillOpacity: isThisMonth ? 1 : 0.2 }
-          });
-          map.addLayer(decorator);
-        } else {
-          map.removeLayer(decorator);
         }
       });
     }
@@ -256,24 +258,24 @@
             // 通常の線
             const line = L.polyline(latlngs, { color: 'red' }).addTo(map);
             // 矢印装飾
-            const decorator = L.polylineDecorator(line, {
-              patterns: [
-                {
-                  offset: '50%', // 線の中央
-                  repeat: 0,
-                  symbol: L.Symbol.arrowHead({
-                    pixelSize: 12,
-                    polygon: true,
-                    pathOptions: { color: 'red', fillOpacity: 1 }
-                  })
-                }
-              ]
-            }).addTo(map);
+            //const decorator = L.polylineDecorator(line, {
+            //  patterns: [
+            //    {
+            //      offset: '50%', // 線の中央
+            //      repeat: 0,
+            //      symbol: L.Symbol.arrowHead({
+            //        pixelSize: 12,
+            //        polygon: true,
+            //        pathOptions: { color: 'red', fillOpacity: 1 }
+            //      })
+            //    }
+            //  ]
+            //}).addTo(map);
             const date = convertHasseiDate(row.発生日);
             lines.push({ line, date });
-            decorators.push({ decorator, date });
+            //decorators.push({ decorator, date });
             console.log(lines);
-            console.log(decorators);
+            //console.log(decorators);
           }
           else {
             const lat = parseFloat(row.緯度);
