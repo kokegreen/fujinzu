@@ -141,14 +141,13 @@
           opacity: isFinished ? 0.2 : isThisMonth ? 1 : 0.6
         });
       });
-      console.log(decorators);
       decorators.forEach(({ decorator, date }) => {
-        console.log(decorator);
         map.removeLayer(decorator);
       });
       lines.forEach(({ line, date }) => {
         if (date <= sDate) {
           const isThisMonth = checkIsThisMonth(sDate, date);
+          console.log(isThisMonth);
           line.setStyle({
             opacity: isThisMonth ? 1 : 0.2
           });
