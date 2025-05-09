@@ -156,7 +156,8 @@
         if (date <= sDate) {
           const isThisMonth = checkIsThisMonth(sDate, date);
           decorator.setStyle({
-            opacity: isThisMonth ? 1 : 0.2
+            opacity: isThisMonth ? 1 : 0.2,
+            pathOptions: { color: 'red', fillOpacity: isThisMonth ? 1 : 0.2 }
           });
           map.addLayer(decorator);
         } else {
