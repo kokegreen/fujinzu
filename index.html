@@ -143,7 +143,7 @@
       });
       decorators.forEach(({ decorator, date }) => {
         map.removeLayer(decorator);
-      }
+      });
       lines.forEach(({ line, date }) => {
         if (date <= sDate) {
           const isThisMonth = checkIsThisMonth(sDate, date);
