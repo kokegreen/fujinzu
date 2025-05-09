@@ -59,6 +59,8 @@
   <script>
     const markers = [];
     const markers_kyoutoku = [];
+    const lines = [];
+    const decorators = [];
     // ベースレイヤー定義
     const baseLayers = {
       "OpenStreetMap": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -143,6 +145,11 @@
       const formatted = `${year}-${month.toString().padStart(2, '0')}`;
       yearValueKyoutoku.textContent = formatted;
       return new Date(`${formatted}-01`);
+    }
+
+    function convertHasseiDate(hasseiDate) {
+      const [y, m, d] = hasseiDate.split('/').map(Number);
+      return = new Date(y, m - 1, d);  // 月は0始まり
     }
     
     slider.addEventListener('input', () => {
@@ -235,6 +242,9 @@
                 }
               ]
             }).addTo(map);
+            const date = convertHasseiDate(row.発生日);
+            lines.push({ line, date });
+            decorators.push({ decorator, date });
           }
           else {
             const lat = parseFloat(row.緯度);
