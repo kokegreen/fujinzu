@@ -127,27 +127,27 @@
         });
       });
     }
-    function updateMarkerColorsKyoutoku(date) {
+    function updateMarkerColorsKyoutoku(sDate) {
       markers_kyoutoku.forEach(marker => {
-        const isThisMonth = ((date.getFullYear() == marker.hasseiDate.getFullYear()) && (date.getMonth() == marker.hasseiDate.getMonth()));
-        const isFinished = marker.hasseiDate < date;
+        const isThisMonth = ((sDate.getFullYear() == marker.hasseiDate.getFullYear()) && (sDate.getMonth() == marker.hasseiDate.getMonth()));
+        const isFinished = marker.hasseiDate < sDate;
         marker.setStyle({
           fillColor: isFinished ? "red" : isThisMonth ? "red" : "white",
           fillOpacity: isFinished ? 0.2 : isThisMonth ? 0.8 : 0.6,
           opacity: isFinished ? 0.2 : isThisMonth ? 1 : 0.6
         });
       });
-      lines.forEach(({ line, lineDate }) => {
-        console.log(lineDate);
+      lines.forEach(({ line, date }) => {
         console.log(date);
-        if (lineDate <= date) {
+        console.log(sDate);
+        if (date <= sDate) {
           map.addLayer(line);
         } else {
           map.removeLayer(line);
         }
       });
-      decorators.forEach(({ decorator, decoratorDate }) => {
-        if (decoratorDate <= date) {
+      decorators.forEach(({ decorator, date }) => {
+        if (date <= sDate) {
           map.addLayer(decorator);
         } else {
           map.removeLayer(decorator);
