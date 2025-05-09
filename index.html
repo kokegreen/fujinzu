@@ -138,6 +138,8 @@
         });
       });
       lines.forEach(({ line, lineDate }) => {
+        console.log(lineDate);
+        console.log(date);
         if (lineDate <= date) {
           map.addLayer(line);
         } else {
