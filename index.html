@@ -137,6 +137,20 @@
           opacity: isFinished ? 0.2 : isThisMonth ? 1 : 0.6
         });
       });
+      lines.forEach(({ line, lineDate }) => {
+        if (lineDate <= date) {
+          map.addLayer(line);
+        } else {
+          map.removeLayer(line);
+        }
+      });
+      decorators.forEach(({ decorator, decoratorDate }) => {
+        if (decoratorDate <= date) {
+          map.addLayer(decorator);
+        } else {
+          map.removeLayer(decorator);
+        }
+      });
     }
 
     function updateKyoutokuDisplay(monthOffset) {
