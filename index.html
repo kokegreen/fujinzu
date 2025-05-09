@@ -141,6 +141,7 @@
           opacity: isFinished ? 0.2 : isThisMonth ? 1 : 0.6
         });
       });
+      console.log(decorators);
       decorators.forEach(({ decorator, date }) => {
         console.log(decorator);
         map.removeLayer(decorator);
@@ -152,7 +153,7 @@
             opacity: isThisMonth ? 1 : 0.2
           });
           map.addLayer(line);
-          const newDecorator = L.polylineDecorator(line, {
+          const decorator = L.polylineDecorator(line, {
             patterns: [{
               offset: '50%',
               repeat: 0,
@@ -166,7 +167,7 @@
               })
             }]
           }).addTo(map);
-          decorators.push({ newDecorator, date });
+          decorators.push({ decorator, date });
         } else {
           map.removeLayer(line);
         }
