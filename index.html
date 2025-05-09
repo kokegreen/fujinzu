@@ -141,6 +141,9 @@
           opacity: isFinished ? 0.2 : isThisMonth ? 1 : 0.6
         });
       });
+      decorators.forEach(({ decorator, date }) => {
+        map.removeLayer(decorator);
+      }
       lines.forEach(({ line, date }) => {
         if (date <= sDate) {
           const isThisMonth = checkIsThisMonth(sDate, date);
@@ -150,7 +153,7 @@
           map.addLayer(line);
           const newDecorator = L.polylineDecorator(line, {
             patterns: [{
-              offset: '100%',
+              offset: '50%',
               repeat: 0,
               symbol: L.Symbol.arrowHead({
                 pixelSize: 10,
@@ -162,6 +165,7 @@
               })
             }]
           }).addTo(map);
+          decorators.push({ newDecorator, date });
         } else {
           map.removeLayer(line);
         }
