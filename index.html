@@ -149,7 +149,7 @@
 
     function convertHasseiDate(hasseiDate) {
       const [y, m, d] = hasseiDate.split('/').map(Number);
-      return = new Date(y, m - 1, d);  // 月は0始まり
+      return new Date(y, m - 1, d);  // 月は0始まり
     }
     
     slider.addEventListener('input', () => {
