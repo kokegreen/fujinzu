@@ -116,6 +116,10 @@
     const playButton = document.getElementById("playButton");
     let intervalId = null;
 
+    function checkIsThisMonth(date1, date2) {
+      return ((date1.getFullYear() == date2.getFullYear()) && (date1.getMonth() == date2.getMonth()));
+    }
+    
     function updateMarkerColors(year) {
       markers.forEach(marker => {
         const isChikujo = marker.chikujo < year;
@@ -127,9 +131,9 @@
         });
       });
     }
-    function updateMarkerColorsKyoutoku(sDate) {
+    function updatePropertiesKyoutoku(sDate) {
       markers_kyoutoku.forEach(marker => {
-        const isThisMonth = ((sDate.getFullYear() == marker.hasseiDate.getFullYear()) && (sDate.getMonth() == marker.hasseiDate.getMonth()));
+        const isThisMonth = checkIsThisMonth(sDate, marker.hasseiDate);
         const isFinished = marker.hasseiDate < sDate;
         marker.setStyle({
           fillColor: isFinished ? "red" : isThisMonth ? "red" : "white",
@@ -138,9 +142,11 @@
         });
       });
       lines.forEach(({ line, date }) => {
-        console.log(date);
-        console.log(sDate);
         if (date <= sDate) {
+          const isThisMonth = checkIsThisMonth(sDate, date);
+          line.setStyle({
+            opacity: isThisMonth ? 1 : 0.2
+          });
           map.addLayer(line);
         } else {
           map.removeLayer(line);
@@ -148,6 +154,10 @@
       });
       decorators.forEach(({ decorator, date }) => {
         if (date <= sDate) {
+          const isThisMonth = checkIsThisMonth(sDate, date);
+          decorator.setStyle({
+            opacity: isThisMonth ? 1 : 0.2
+          });
           map.addLayer(decorator);
         } else {
           map.removeLayer(decorator);
@@ -178,7 +188,7 @@
       const date = updateKyoutokuDisplay(parseInt(sliderKyoutoku.value, 10));
       //const year = parseInt(sliderKyoutoku.value, 10);
       //yearValueKyoutoku.textContent = year;
-      updateMarkerColorsKyoutoku(date);
+      updatePropertiesKyoutoku(date);
     });
 
     // 再生ボタン制御
@@ -289,7 +299,7 @@
 
         //初期表示
         const date = updateKyoutokuDisplay(parseInt(sliderKyoutoku.value, 10));
-        updateMarkerColorsKyoutoku(date);
+        updatePropertiesKyoutoku(date);
       }
     });
     
