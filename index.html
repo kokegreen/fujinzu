@@ -142,6 +142,7 @@
         });
       });
       decorators.forEach(({ decorator, date }) => {
+        console.log(decorator);
         map.removeLayer(decorator);
       });
       lines.forEach(({ line, date }) => {
