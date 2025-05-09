@@ -259,6 +259,8 @@
             const date = convertHasseiDate(row.発生日);
             lines.push({ line, date });
             decorators.push({ decorator, date });
+            console.log(lines);
+            console.log(decorators);
           }
           else {
             const lat = parseFloat(row.緯度);
