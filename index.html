@@ -148,8 +148,9 @@
       markers_kyoutoku.forEach(marker => {
         const isThisMonth = checkIsThisMonth(sDate, marker.hasseiDate);
         const isFinished = marker.hasseiDate < sDate;
+        const isShigeuji = marker.keisei == "成氏";
         marker.setStyle({
-          fillColor: isFinished ? "red" : isThisMonth ? "red" : "white",
+          fillColor: isFinished ? (isShigeuji ? : "red" : "blue") : isThisMonth ? (isShigeuji ? "red" : "blue") : "white",
           fillOpacity: isFinished ? 0.2 : isThisMonth ? 0.8 : 0.6,
           opacity: isFinished ? 0.2 : isThisMonth ? 1 : 0.6
         });
