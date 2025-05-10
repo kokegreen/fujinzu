@@ -161,14 +161,15 @@
       lines.forEach(({ line, date }) => {
         if (compareYearMonth(date,sDate)) {
           const isThisMonth = checkIsThisMonth(sDate, date);
+          const isShigeuji = line.keisei == "成氏";
           //console.log(isThisMonth);
           //console.log(sDate);
           //console.log(date);
           line.setStyle({
+            color: isShigeuji ? 'red' : 'blue',
             opacity: isThisMonth ? 1 : 0.2
           });
           map.addLayer(line);
-          const isShigeuji = line.keisei == "成氏";
           const decorator = L.polylineDecorator(line, {
             patterns: [{
               offset: '50%',
