@@ -168,6 +168,7 @@
             opacity: isThisMonth ? 1 : 0.2
           });
           map.addLayer(line);
+          const isShigeuji = line.keisei == "成氏";
           const decorator = L.polylineDecorator(line, {
             patterns: [{
               offset: '50%',
@@ -176,8 +177,8 @@
                 pixelSize: 10,
                 polygon: true,
                 pathOptions: {
-                  color: 'red',
-                  opacity: 0.2
+                  color: isShigeuji ? 'red' : 'blue',
+                  opacity: isThisMonth ? 1 : 0.2
                 }
               })
             }]
@@ -293,6 +294,7 @@
             //  ]
             //}).addTo(map);
             const date = convertHasseiDate(row.発生日);
+            line.keisei = row.形勢;
             lines.push({ line, date });
             //decorators.push({ decorator, date });
             //console.log(lines);
