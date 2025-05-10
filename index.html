@@ -42,7 +42,7 @@
   <!--享徳用スライダー-->
   <div id="slider-container-kyoutoku">
     <label for="yearMonthSlider">年月:</label>
-    <input type="range" id="yearSliderKyoutoku" min="0" max="1199" value="240" style="width: 60%;">
+    <input type="range" id="yearSliderKyoutoku" min="0" max="599" value="0" style="width: 60%;">
     <span id="yearValueKyoutoku">1620-01</span>
     <button id="playButton">▶ 再生</button>
   </div>
@@ -111,8 +111,8 @@
     const yearValue = document.getElementById('yearValue');
     const sliderKyoutoku = document.getElementById('yearSliderKyoutoku');
     const yearValueKyoutoku = document.getElementById('yearValueKyoutoku');
-    const minYear = 1400;
-    const maxMonthOffset = parseInt(sliderKyoutoku.max); // 1199 → 100年分
+    const minYear = 1450;
+    const maxMonthOffset = parseInt(sliderKyoutoku.max); // 599 → 50年分
     const playButton = document.getElementById("playButton");
     let intervalId = null;
 
