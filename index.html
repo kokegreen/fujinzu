@@ -116,6 +116,19 @@
     const playButton = document.getElementById("playButton");
     let intervalId = null;
 
+    function compareYearMonth(date1, date2) {
+      //date2の方が大きいもしくは同年月であればtrue
+      if (date1.getFullYear() < date2.getFullYear()) {
+        return true;
+      } else if (date1.getFullYear() > date2.getFullYear()) {
+        return false;
+      } else if (date1.getMonth() <= date2.getMonth()) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    
     function checkIsThisMonth(date1, date2) {
       return ((date1.getFullYear() == date2.getFullYear()) && (date1.getMonth() == date2.getMonth()));
     }
@@ -145,7 +158,7 @@
         map.removeLayer(decorator);
       });
       lines.forEach(({ line, date }) => {
-        if (date <= sDate) {
+        if (compareYearMonth(date,sDate)) {
           const isThisMonth = checkIsThisMonth(sDate, date);
           console.log(isThisMonth);
           console.log(sDate);
