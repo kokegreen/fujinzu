@@ -160,9 +160,9 @@
       lines.forEach(({ line, date }) => {
         if (compareYearMonth(date,sDate)) {
           const isThisMonth = checkIsThisMonth(sDate, date);
-          console.log(isThisMonth);
-          console.log(sDate);
-          console.log(date);
+          //console.log(isThisMonth);
+          //console.log(sDate);
+          //console.log(date);
           line.setStyle({
             opacity: isThisMonth ? 1 : 0.2
           });
@@ -294,7 +294,7 @@
             const date = convertHasseiDate(row.発生日);
             lines.push({ line, date });
             //decorators.push({ decorator, date });
-            console.log(lines);
+            //console.log(lines);
             //console.log(decorators);
           }
           else {
