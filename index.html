@@ -63,6 +63,12 @@
     const markers_kyoutoku = [];
     const lines = [];
     const decorators = [];
+    const castleIcon = L.icon({
+      iconUrl: './img/shiro.png', // 画像パスを正しく指定
+      iconSize: [32, 32],    // アイコンのサイズ
+      iconAnchor: [16, 32],  // 地図上のポイント（下部中心に揃える）
+      popupAnchor: [0, -32]  // ポップアップの表示位置
+    });
     // ベースレイヤー定義
     const baseLayers = {
       "OpenStreetMap": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -277,13 +283,8 @@
           const lat = parseFloat(row.緯度);
           const lng = parseFloat(row.経度);
           if (!isNaN(lat) && !isNaN(lng)) {
-            const marker = L.circleMarker([lat, lng], {
-              radius: 8,
-              fillColor: "blue",
-              color: "black",
-              weight: 1,
-              opacity: 1,
-              fillOpacity: 0.8
+            const marker = L.marker([lat, lng], {
+              icon: castleIcon
             }).addTo(map);
             marker.bindPopup(`<strong>${row.城址名}</strong>`);
             marker.chikujo = parseInt(row.築城年, 10);
