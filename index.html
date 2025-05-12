@@ -63,11 +63,26 @@
     const markers_kyoutoku = [];
     const lines = [];
     const decorators = [];
+    const icon_size = [16, 16];// アイコンのサイズ
+    const icon_anchor = [8, 8];// 地図上のポイント（下部中心に揃える）
+    const popup_anchor = [0, -8];// ポップアップの表示位置
     const castleIcon = L.icon({
-      iconUrl: './img/shiro.png', // 画像パスを正しく指定
-      iconSize: [16, 16],    // アイコンのサイズ
-      iconAnchor: [8, 8],  // 地図上のポイント（下部中心に揃える）
-      popupAnchor: [0, -8]  // ポップアップの表示位置
+      iconUrl: './img/shiro.png', 
+      iconSize: icon_size,
+      iconAnchor: icon_anchor,  
+      popupAnchor: popup_anchor  
+    });
+    const castleIconRed = L.icon({
+      iconUrl: './img/shiro_red.png', 
+      iconSize: icon_size,
+      iconAnchor: icon_anchor,
+      popupAnchor: popup_anchor
+    });
+    const castleIconBlue = L.icon({
+      iconUrl: './img/shiro_blue.png', 
+      iconSize: icon_size,
+      iconAnchor: icon_anchor,
+      popupAnchor: popup_anchor
     });
     // ベースレイヤー定義
     const baseLayers = {
