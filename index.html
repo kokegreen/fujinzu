@@ -300,9 +300,18 @@
           if (!isNaN(lat) && !isNaN(lng)) {
             const icon = L.divIcon({
               html: `
-                <div style="display: flex; flex-direction: row; align-items: center; gap: 4px;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
                   <img src="./img/shiro.png" style="width: 16px; height: 16px;" />
-                  <span style="font-size: 8px; color: black; background: white; padding: 1px 3px; border-radius: 3px; letter-spacing: -0.5px; writing-mode: horizontal-tb;">
+                  <span style="
+                    font-size: 8px; 
+                    color: black;
+                    background: transparent;
+                    padding: 1px 3px;
+                    border-radius: 3px;
+                    letter-spacing: -0.5px;
+                    writing-mode: horizontal-tb;
+                    white-space: nowrap;
+                    ">
                   ${row.城址名}</span>
                 </div>
               `,
