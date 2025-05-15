@@ -172,11 +172,26 @@
         const isThisMonth = checkIsThisMonth(sDate, marker.hasseiDate);
         const isFinished = marker.hasseiDate < sDate;
         const isShigeuji = marker.keisei == "成氏";
-        marker.setStyle({
-          fillColor: isFinished ? (isShigeuji ? "red" : "blue") : isThisMonth ? (isShigeuji ? "red" : "blue") : "white",
-          fillOpacity: isFinished ? 0.2 : isThisMonth ? 0.8 : 0.6,
-          opacity: isFinished ? 0.2 : isThisMonth ? 1 : 0.6
-        });
+        const isIkusa = marker.shubetu == "戦";
+        if (isIkusa) {
+          if (isThisMonth) {
+            if (!map.hasLayer(marker)) {
+              marker.addTo(map);
+            }
+          }
+          else {
+            if (map.hasLayer(marker)) {
+            map.removeLayer(marker);   
+            }
+          }
+        }
+        else {
+          marker.setStyle({
+            fillColor: isFinished ? (isShigeuji ? "red" : "blue") : isThisMonth ? (isShigeuji ? "red" : "blue") : "white",
+            fillOpacity: isFinished ? 0.2 : isThisMonth ? 0.8 : 0.6,
+            opacity: isFinished ? 0.2 : isThisMonth ? 1 : 0.6
+          });
+        }
       });
       decorators.forEach(({ decorator, date }) => {
         map.removeLayer(decorator);
@@ -392,6 +407,12 @@
               iconAnchor: [12, 16]
             });
             const marker = L.marker([lat, lng], { icon }).addTo(map);
+            const [y, m, d] = row.発生日.split('/').map(Number);
+            const date = new Date(y, m - 1, d);  // 月は0始まり
+            marker.hasseiDate = date;
+            marker.hasseiYear = parseInt(date.getFullYear(), 10);
+            marker.shubetu = row.種別;
+            markers_kyoutoku.push(marker);
           }
           else {
             const lat = parseFloat(row.緯度);
@@ -411,6 +432,7 @@
               marker.hasseiDate = date;
               marker.hasseiYear = parseInt(date.getFullYear(), 10);
               marker.keisei = row.形勢;
+              marker.shubetu = row.種別;
               markers_kyoutoku.push(marker);
             }
           }
