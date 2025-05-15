@@ -378,15 +378,15 @@
                   <img src="./img/ikusa.png" style="width: 16px; height: 16px; position: absolute; top: 4px; left: 4px; filter: drop-shadow(0 0 1px black);" />
             
                   <!-- 左上のアイコン -->
-                  <img src="./img/bushi_blue.png" style="width: 8px; height: 8px; position: absolute; top: 0; left: 0;" />
+                  <img src="./img/bushi_blue.png" style="width: 16px; height: 16px; position: absolute; top: -8px; left: -8px;" />
             
                   <!-- 右上のアイコン -->
-                  <img src="./img/bushi_red.png" style="width: 8px; height: 8px; position: absolute; top: 0; right: 0;" />
+                  <img src="./img/bushi_red.png" style="width: 16px; height: 16px; position: absolute; top: -8px; right: -8px;" />
                 </div>
               `,
               className: '',  // デフォルトのスタイルを無効に
-              iconSize: [24, 24],
-              iconAnchor: [12, 12]
+              iconSize: [24, 32],
+              iconAnchor: [12, 16]
             });
             const marker = L.marker([lat, lng], { icon }).addTo(map);
           }
