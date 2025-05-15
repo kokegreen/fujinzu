@@ -106,11 +106,11 @@
     // 地図初期化（OpenStreetMap を最初に表示）
     const map = L.map('map', {
       center: [36.035420, 139.410082],
-      zoom: 8,
+      zoom: 9,
       layers: [baseLayers["OpenStreetMap"]]
     })
     // 地図を表示（初期位置：埼玉の真ん中あたり）  
-      .setView([36.035420, 139.410082], 8);
+      .setView([36.035420, 139.410082], 9);
 
     // レイヤーコントロールを追加
     L.control.layers(baseLayers).addTo(map);
@@ -394,11 +394,11 @@
                   filter: drop-shadow(0 0 1px black);" />
             
                   <!-- 左上のアイコン -->
-                  <img src="./img/bushi_blue.png" style="width: 16px; height: 16px; position: absolute; top: -8px; left: -8px;
+                  <img src="./img/hito_blue.png" style="width: 16px; height: 16px; position: absolute; top: -8px; left: -8px;
                   filter: drop-shadow(0 0 1px black);" />
             
                   <!-- 右上のアイコン -->
-                  <img src="./img/bushi_red.png" style="width: 16px; height: 16px; position: absolute; top: -8px; right: -8px;
+                  <img src="./img/hito_red.png" style="width: 16px; height: 16px; position: absolute; top: -8px; right: -8px;
                   filter: drop-shadow(0 0 1px black);" />
                 </div>
               `,
