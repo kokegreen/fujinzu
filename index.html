@@ -367,6 +367,9 @@
             //console.log(lines);
             //console.log(decorators);
           }
+          else if (row.種別 == "人物") {
+            const jinbutu = row.内容.split(/[、]/).filter(s => s);  // 空文字除外
+          }
           else {
             const lat = parseFloat(row.緯度);
             const lng = parseFloat(row.経度);
