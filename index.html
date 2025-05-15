@@ -367,8 +367,28 @@
             //console.log(lines);
             //console.log(decorators);
           }
-          else if (row.種別 == "人物") {
-            const jinbutu = row.内容.split(/[、]/).filter(s => s);  // 空文字除外
+          else if (row.種別 == "戦") {
+            const lat = parseFloat(row.緯度);
+            const lng = parseFloat(row.経度);
+            //const jinbutu = row.内容.split(/[、]/).filter(s => s);  // 空文字除外
+            const icon = L.divIcon({
+              html: `
+                <div style="position: relative; width: 24px; height: 24px;">
+                  <!-- 中央の戦アイコン -->
+                  <img src="./img/ikusa.png" style="width: 16px; height: 16px; position: absolute; top: 4px; left: 4px;" />
+            
+                  <!-- 左上のアイコン -->
+                  <img src="./img/bushi_blue.png" style="width: 8px; height: 8px; position: absolute; top: 0; left: 0;" />
+            
+                  <!-- 右上のアイコン -->
+                  <img src="./img/bushi_red.png" style="width: 8px; height: 8px; position: absolute; top: 0; right: 0;" />
+                </div>
+              `,
+              className: '',  // デフォルトのスタイルを無効に
+              iconSize: [24, 24],
+              iconAnchor: [12, 12]
+            });
+            const marker = L.marker([lat, lng], { icon }).addTo(map);
           }
           else {
             const lat = parseFloat(row.緯度);
