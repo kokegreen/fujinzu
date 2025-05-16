@@ -241,6 +241,16 @@
       const [y, m, d] = hasseiDate.split('/').map(Number);
       return new Date(y, m - 1, d);  // 月は0始まり
     }
+
+    function formatNames(raw, clr) {
+      return raw.split('、').map(name => {
+        const trimmed = name.trim();
+        const isStruck = trimmed.startsWith('x');
+        const cleanName = isStruck ? trimmed.slice(1) : trimmed;
+    
+        return `<span style="${isStruck ? 'text-decoration: line-through;' : ''} color: ${clr}">${cleanName}</span>`;
+      }).join('、');
+    }
     
     slider.addEventListener('input', () => {
       const year = parseInt(slider.value, 10);
@@ -387,8 +397,11 @@
             const lng = parseFloat(row.経度);
             const names1 = (row["軍１"] || "").split("、").filter(n => n.trim() !== "");
             const names2 = (row["軍２"] || "").split("、").filter(n => n.trim() !== "");
-            const nameHTML1 = names1.map(name => `<div style="font-size: 10px; color: red; white-space: nowrap;">${name}</div>`).join("");
-            const nameHTML2 = names2.map(name => `<div style="font-size: 10px; color: blue; white-space: nowrap;">${name}</div>`).join("");
+            //const nameHTML1 = names1.map(name => `<div style="font-size: 10px; color: red; white-space: nowrap;">${name}</div>`).join("");
+            //const nameHTML2 = names2.map(name => `<div style="font-size: 10px; color: blue; white-space: nowrap;">${name}</div>`).join("");
+            const nameHTML1 = formatNames(row["軍１"], "red");
+            const nameHTML2 = formatNames(row["軍２"], "blue");
+
             const icon = L.divIcon({
               html: `
                 <div style="position: relative; width: 24px; height: 24px;">
@@ -405,7 +418,10 @@
                   <div style="position: absolute; top: 0; right: -48px; text-align: right; line-height: 1;
                   background-color: rgba(255, 255, 255, 0.4);
                   padding: 1px 3px;
-                  border-radius: 4px;">
+                  border-radius: 4px;
+                  font-size: 10px;
+                  white-space: nowrap;
+                  ">
                   ${nameHTML1}
                   </div>
                   
@@ -417,7 +433,10 @@
                   <div style="position: absolute; top: 0; left: -48px; text-align: left; line-height: 1;
                   background-color: rgba(255, 255, 255, 0.4);
                   padding: 1px 3px;
-                  border-radius: 4px;">
+                  border-radius: 4px;
+                  font-size: 10px;
+                  white-space: nowrap;
+                  ">
                   ${nameHTML2}
                   </div>
                 </div>
