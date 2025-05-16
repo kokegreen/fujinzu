@@ -385,7 +385,10 @@
           else if (row.種別 == "戦") {
             const lat = parseFloat(row.緯度);
             const lng = parseFloat(row.経度);
-            //const jinbutu = row.内容.split(/[、]/).filter(s => s);  // 空文字除外
+            const names1 = (row["軍１"] || "").split("、").filter(n => n.trim() !== "");
+            const names2 = (row["軍２"] || "").split("、").filter(n => n.trim() !== "");
+            const nameHTML1 = names1.map(name => `<div style="font-size: 8px; color: red;">${name}</div>`).join("");
+            const nameHTML2 = names2.map(name => `<div style="font-size: 8px; color: blue;">${name}</div>`).join("");
             const icon = L.divIcon({
               html: `
                 <div style="position: relative; width: 24px; height: 24px;">
@@ -399,12 +402,18 @@
                   title="${row["軍１"] || ''}"
                   style="width: 16px; height: 16px; position: absolute; top: -8px; right: -8px;
                   filter: drop-shadow(0 0 1px black);" />
+                  <div style="position: absolute; top: 0; right: 0; text-align: right; line-height: 1;">
+                  ${nameHTML1}
+                  </div>
                   
                   <!-- 左上のアイコン -->
                   <img src="./img/hito_blue.png" 
                   title="${row["軍２"] || ''}"
                   style="width: 16px; height: 16px; position: absolute; top: -8px; left: -8px;
-                  filter: drop-shadow(0 0 1px black);" />     
+                  filter: drop-shadow(0 0 1px black);" />  
+                  <div style="position: absolute; top: 0; left: 0; text-align: left; line-height: 1;">
+                  ${nameHTML2}
+                  </div>
                 </div>
               `,
               className: '',  // デフォルトのスタイルを無効に
