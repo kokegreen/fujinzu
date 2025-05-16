@@ -387,8 +387,8 @@
             const lng = parseFloat(row.経度);
             const names1 = (row["軍１"] || "").split("、").filter(n => n.trim() !== "");
             const names2 = (row["軍２"] || "").split("、").filter(n => n.trim() !== "");
-            const nameHTML1 = names1.map(name => `<div style="font-size: 8px; color: red;">${name}</div>`).join("");
-            const nameHTML2 = names2.map(name => `<div style="font-size: 8px; color: blue;">${name}</div>`).join("");
+            const nameHTML1 = names1.map(name => `<div style="font-size: 10px; color: red; white-space: nowrap;">${name}</div>`).join("");
+            const nameHTML2 = names2.map(name => `<div style="font-size: 10px; color: blue; white-space: nowrap;">${name}</div>`).join("");
             const icon = L.divIcon({
               html: `
                 <div style="position: relative; width: 24px; height: 24px;">
