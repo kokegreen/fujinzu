@@ -248,8 +248,8 @@
         const isStruck = trimmed.startsWith('x');
         const cleanName = isStruck ? trimmed.slice(1) : trimmed;
     
-        return `<span style="${isStruck ? 'text-decoration: line-through;' : ''} color: ${clr}">${cleanName}</span>`;
-      }).join('、');
+        return `<div style="${isStruck ? 'text-decoration: line-through;' : ''} color: ${clr}">${cleanName}</div>`;
+      }).join("");
     }
     
     slider.addEventListener('input', () => {
