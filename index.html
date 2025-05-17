@@ -363,10 +363,12 @@
       header: true,
       complete: function(results) {
         results.data.forEach(row => {
+          const lat = parseFloat(row.緯度);
+          const lng = parseFloat(row.経度);
           if (row.種別 == "移動") {
             // 2点間矢印描写
             const latlngs = [
-              [parseFloat(row.緯度), parseFloat(row.経度)], // From
+              [lat, lng], // From
               [parseFloat(row.緯度To), parseFloat(row.経度To)]  // To
             ];
             // 通常の線
@@ -393,8 +395,6 @@
             //console.log(decorators);
           }
           else if (row.種別 == "戦") {
-            const lat = parseFloat(row.緯度);
-            const lng = parseFloat(row.経度);
             //const names1 = (row["軍１"] || "").split("、").filter(n => n.trim() !== "");
             //const names2 = (row["軍２"] || "").split("、").filter(n => n.trim() !== "");
             //const nameHTML1 = names1.map(name => `<div style="font-size: 10px; color: red; white-space: nowrap;">${name}</div>`).join("");
@@ -443,7 +443,7 @@
               `,
               className: '',  // デフォルトのスタイルを無効に
               iconSize: [60, 50],
-              iconAnchor: [8, 25]
+              iconAnchor: [16, 25]
             });
             const marker = L.marker([lat, lng], { icon }).addTo(map);
             marker.bindPopup(`<strong>${row.内容}</strong>`);
@@ -455,8 +455,6 @@
             markers_kyoutoku.push(marker);
           }
           else {
-            const lat = parseFloat(row.緯度);
-            const lng = parseFloat(row.経度);
             if (!isNaN(lat) && !isNaN(lng)) {
               const marker = L.circleMarker([lat, lng], {
                 radius: 8,
