@@ -395,8 +395,8 @@
           else if (row.種別 == "戦") {
             const lat = parseFloat(row.緯度);
             const lng = parseFloat(row.経度);
-            const names1 = (row["軍１"] || "").split("、").filter(n => n.trim() !== "");
-            const names2 = (row["軍２"] || "").split("、").filter(n => n.trim() !== "");
+            //const names1 = (row["軍１"] || "").split("、").filter(n => n.trim() !== "");
+            //const names2 = (row["軍２"] || "").split("、").filter(n => n.trim() !== "");
             //const nameHTML1 = names1.map(name => `<div style="font-size: 10px; color: red; white-space: nowrap;">${name}</div>`).join("");
             //const nameHTML2 = names2.map(name => `<div style="font-size: 10px; color: blue; white-space: nowrap;">${name}</div>`).join("");
             const nameHTML1 = formatNames(row["軍１"], "red");
@@ -416,7 +416,7 @@
                   style="width: 16px; height: 16px; position: absolute; top: -8px; right: -8px;
                   " />
                   <div style="position: absolute; top: 0; right: -48px; text-align: right; line-height: 1;
-                  background-color: rgba(255, 255, 255, 0.4);
+                  background-color: rgba(255, 255, 255, 0.6);
                   padding: 1px 3px;
                   border-radius: 4px;
                   font-size: 10px;
@@ -431,7 +431,7 @@
                   style="width: 16px; height: 16px; position: absolute; top: -8px; left: -8px;
                   " />  
                   <div style="position: absolute; top: 0; left: -48px; text-align: left; line-height: 1;
-                  background-color: rgba(255, 255, 255, 0.4);
+                  background-color: rgba(255, 255, 255, 0.6);
                   padding: 1px 3px;
                   border-radius: 4px;
                   font-size: 10px;
