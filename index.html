@@ -204,9 +204,17 @@
         if (compareYearMonth(date,sDate)) {
           const isThisMonth = checkIsThisMonth(sDate, date);
           const isShigeuji = line.keisei == "成氏";
-          //console.log(isThisMonth);
-          //console.log(sDate);
-          //console.log(date);
+          //アニメーション
+          if (isThisMonth) {
+            console.log(line);
+            // マーカーを作成
+            //const movingMarker = L.marker(startLatLng, {
+            //  icon: L.icon({
+            //    iconUrl: './img/hito_red.png',
+            //    iconSize: [24, 24],
+            //  })
+            //}).addTo(map);
+          }
           line.setStyle({
             color: isShigeuji ? 'red' : 'blue',
             opacity: isThisMonth ? 1 : 0.2
