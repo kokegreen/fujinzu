@@ -323,14 +323,19 @@
       download: true,
       header: true,
       complete: function(results) {
+        const clr_r = "shiro_red.png";
+        const clr_b = "shiro_blue.png";
+        const clr_other = "shiro.png":
         results.data.forEach(row => {
           const lat = parseFloat(row.緯度);
           const lng = parseFloat(row.経度);
+          const clr = row.色;
+          const iconimg = clr == "red" ? clr_r : clr == "blue" ? clr_b : clr_other;
           if (!isNaN(lat) && !isNaN(lng)) {
             const icon = L.divIcon({
               html: `
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 1px;">
-                  <img src="./img/shiro.png" style="width: 16px; height: 16px;" />
+                  <img src="./img/${iconimg}" style="width: 16px; height: 16px;" />
                   <span style="
                     font-size: 8px; 
                     color: black;
