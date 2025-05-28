@@ -330,7 +330,7 @@
           const lat = parseFloat(row.緯度);
           const lng = parseFloat(row.経度);
           const clr = row.色;
-          const iconimg = clr == "red" ? clr_r : clr == "blue" ? clr_b : clr_other;
+          const iconimg = clr == "red" ? clr_r : (clr == "blue" ? clr_b : clr_other);
           if (!isNaN(lat) && !isNaN(lng)) {
             const icon = L.divIcon({
               html: `
