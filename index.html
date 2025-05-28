@@ -206,14 +206,32 @@
           const isShigeuji = line.keisei == "成氏";
           //アニメーション
           if (isThisMonth) {
-            console.log(line);
+            console.log(line.latlngs);
             // マーカーを作成
-            //const movingMarker = L.marker(startLatLng, {
-            //  icon: L.icon({
-            //    iconUrl: './img/hito_red.png',
-            //    iconSize: [24, 24],
-            //  })
-            //}).addTo(map);
+            const movingMarker = L.marker(line.latlngs[0], {
+              icon: L.icon({
+                iconUrl: isShigeuji ? './img/hito_red.png' : './img/hito_blue.png',
+                iconSize: [24, 24],
+              })
+            }).addTo(map);
+            // アニメーション
+            let t = 0;
+            const duration = 2000; // 2秒
+            const steps = 100;
+            const delay = duration / steps;
+            
+            const animate = () => {
+              if (t > 1) return;
+            
+              const lat = line.latlngs[0].lat + (line.latlngs[1].lat - line.latlngs[0].lat) * t;
+              const lng = line.latlngs[0].lng + (line.latlngs[1].lng - line.latlngs[0].lng) * t;
+              movingMarker.setLatLng([lat, lng]);
+            
+              t += 1 / steps;
+              setTimeout(animate, delay);
+            };
+            
+            animate();
           }
           line.setStyle({
             color: isShigeuji ? 'red' : 'blue',
@@ -406,6 +424,7 @@
             //}).addTo(map);
             const date = convertHasseiDate(row.発生日);
             line.keisei = row.形勢;
+            line.latlngs = latlngs;
             lines.push({ line, date });
             //decorators.push({ decorator, date });
             //console.log(lines);
