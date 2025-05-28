@@ -223,8 +223,8 @@
             const animate = () => {
               if (t > 1) return;
             
-              const lat = line.latlngs[0].lat + (line.latlngs[1].lat - line.latlngs[0].lat) * t;
-              const lng = line.latlngs[0].lng + (line.latlngs[1].lng - line.latlngs[0].lng) * t;
+              const lat = line.latlngs[0][0] + (line.latlngs[1][0] - line.latlngs[0][0]) * t;
+              const lng = line.latlngs[0][1] + (line.latlngs[1][1] - line.latlngs[0][1]) * t;
               movingMarker.setLatLng([lat, lng]);
             
               t += 1 / steps;
