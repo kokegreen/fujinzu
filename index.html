@@ -202,6 +202,7 @@
         map.removeLayer(decorator);
       });
       markers_kyoutoku_moving.forEach(({ movingMarker }) => {
+        console.log(movingMarker);
         if (map.hasLayer(movingMarker)) {
           map.removeLayer(movingMarker);   
         }
@@ -220,7 +221,7 @@
                 iconSize: [24, 24],
               })
             }).addTo(map);
-            markers_kyoutoku_moving.push(movingMarker);
+            
             // アニメーション
             let t = 0;
             const duration = 2000; // 2秒
@@ -237,7 +238,7 @@
               t += 1 / steps;
               setTimeout(animate, delay);
             };
-            
+            markers_kyoutoku_moving.push(movingMarker);
             animate();
           }
           line.setStyle({
