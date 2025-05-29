@@ -202,7 +202,6 @@
         map.removeLayer(decorator);
       });
       markers_kyoutoku_moving.forEach(movingMarker => {
-        console.log(movingMarker);
         if (map.hasLayer(movingMarker)) {
           map.removeLayer(movingMarker);   
         }
@@ -218,7 +217,7 @@
             const movingMarker = L.marker(line.latlngs[0], {
               icon: L.icon({
                 iconUrl: isShigeuji ? './img/hito_red.png' : './img/hito_blue.png',
-                iconSize: [24, 24],
+                iconSize: [12, 12],
               })
             }).addTo(map);
             
