@@ -202,7 +202,9 @@
         map.removeLayer(decorator);
       });
       markers_kyoutoku_moving.forEach(({ movingMarker }) => {
-        map.removeLayer(movingMarker);
+        if (map.hasLayer(movingMarker)) {
+          map.removeLayer(movingMarker);   
+        }
       });
       lines.forEach(({ line, date }) => {
         if (compareYearMonth(date,sDate)) {
