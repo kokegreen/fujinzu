@@ -201,7 +201,7 @@
       decorators.forEach(({ decorator, date }) => {
         map.removeLayer(decorator);
       });
-      markers_kyoutoku_moving.forEach(({ movingMarker }) => {
+      markers_kyoutoku_moving.forEach(movingMarker => {
         console.log(movingMarker);
         if (map.hasLayer(movingMarker)) {
           map.removeLayer(movingMarker);   
