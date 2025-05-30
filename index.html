@@ -212,14 +212,57 @@
           const isShigeuji = line.keisei == "成氏";
           //アニメーション
           if (isThisMonth) {
-            console.log(line.latlngs);
+            const nameHTML1 = formatNames(line.gun1, "red");
+            const nameHTML2 = formatNames(line.gun2, "blue");
             // マーカーを作成
-            const movingMarker = L.marker(line.latlngs[0], {
-              icon: L.icon({
-                iconUrl: isShigeuji ? './img/hito_red.png' : './img/hito_blue.png',
-                iconSize: [16, 16],
-              })
-            }).addTo(map);
+            const icon = L.divIcon({
+              html: `
+                <div style="position: relative; width: 24px; height: 24px;">
+                  <!-- マーカー画像 -->
+                  <img src="${isShigeuji ? './img/hito_red.png' : './img/hito_blue.png'}"
+                       style="width: 16px; height: 16px; position: absolute; top: 4px; left: 4px;" />
+            
+                  <!-- 右上の文字 -->
+                  <div style="
+                    position: absolute;
+                    top: -6px;
+                    right: -6px;
+                    background: rgba(255, 255, 255, 0.6);
+                    font-size: 10px;
+                    padding: 1px 2px;
+                    border-radius: 2px;
+                    white-space: nowrap;
+                  ">
+                    ${nameHTML1}
+                  </div>
+            
+                  <!-- 左上の文字 -->
+                  <div style="
+                    position: absolute;
+                    top: -6px;
+                    left: -6px;
+                    background: rgba(255, 255, 255, 0.6);
+                    font-size: 10px;
+                    padding: 1px 2px;
+                    border-radius: 2px;
+                    white-space: nowrap;
+                  ">
+                    ${nameHTML2}
+                  </div>
+                </div>
+              `,
+              className: '',
+              iconSize: [24, 24],
+              iconAnchor: [12, 12]
+            });
+
+            const movingMarker = L.marker(line.latlngs[0], { icon }).addTo(map);
+            //const movingMarker = L.marker(line.latlngs[0], {
+            //  icon: L.icon({
+            //    iconUrl: isShigeuji ? './img/hito_red.png' : './img/hito_blue.png',
+            //    iconSize: [16, 16],
+            //  })
+            //}).addTo(map);
             
             // アニメーション
             let t = 0;
@@ -432,6 +475,8 @@
             const date = convertHasseiDate(row.発生日);
             line.keisei = row.形勢;
             line.latlngs = latlngs;
+            line.gun1 = row["軍１"];
+            line.gun2 = row["軍２"];
             lines.push({ line, date });
             //decorators.push({ decorator, date });
             //console.log(lines);
